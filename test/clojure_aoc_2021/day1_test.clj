@@ -7,4 +7,10 @@
     (testing "count # of increments"
       (let [input-increments (load-input "day1")]
         (is (= 7 (count-increments test-increments)))
-        (is (= 1713 (count-increments input-increments)))))))
+        (is (= 1713 (count-increments input-increments))))))
+
+  (testing "part 2"
+    (testing "count # of increments"
+      (let [input-increments (load-input "day1")]
+        (is (= 5 (count-sums-increments test-increments)))
+        (is (= 1734 (count-sums-increments input-increments)))))))

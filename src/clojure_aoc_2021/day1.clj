@@ -6,16 +6,27 @@
 
 (defn load-input [day]
   (->> (io/resource (str "input/" day ".txt"))
-      slurp
-      (string/split-lines)
-      (map #(Integer/parseInt %))))
+       slurp
+       (string/split-lines)
+       (map #(Integer/parseInt %))))
 
-(defn count-increments [input]
+(defn count-increments
+  "returns count of linear increments"
+  [input]
   (->> input
        (partition 2 1)
        (filter (fn [[x y]] (< x y)))
        (count)))
 
+(defn count-sums-increments
+  "returns sums of three measurements sliding window"
+  [input]
+  (->> input
+       (partition 3 1)
+       (map #(reduce + %))
+       count-increments))
+
 (comment
   (let [t1 test-increments]
-    (count-increments t1)))
+    (count-increments t1)
+    (count-sums-increments t1)))
